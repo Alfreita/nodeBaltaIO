@@ -32,11 +32,8 @@ exports.post = (req, res, next) => {
         });
 };
 exports.get = (req, res, next) => {
-
-    Product
-        .find({
-            active: true
-        }, 'title price slug')
+    repository.get()
+    
         .then(data => {
             res.status(200).send(data);
         }).catch(e => {
