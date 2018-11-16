@@ -13,9 +13,6 @@ const Product = require('./models/product');
 //carrega as rotas
 const indexRoute = require('./routes/index-route');
 const productsRoute = require('./routes/product-route');
-app.use(express.static('./src/public'));
-app.set('view engine','ejs');
-app.set('views','./src/views');
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
 
