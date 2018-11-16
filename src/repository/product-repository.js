@@ -8,7 +8,7 @@ exports.get=()=>{
         .find({
             active:true
         },'title price slug');
-}
+};
 
 exports.getBySlug = (slug ) => {
    return  Product
@@ -16,8 +16,31 @@ exports.getBySlug = (slug ) => {
             slug: slug,
             active: true
         }, 'title description price slug tags')
-}
+};
+exports.getByTag =(tag) =>{
+    return Product.find({
+        tags:tag,
+        active:true
+    },'title description price slug tags')
+};
+exports.create =(data)=>{
+    var product = new Product(data);
+     return product.save();
+};
 
-exports.getById =() =>{
-    
-}
+exports.update =(id,data)=>{
+    return Product
+        .findByIdAndUpdate(id,{
+            $set:{
+                title: data.title,
+                description: data.description,
+                price: data.price,
+                slug: data.slug
+            }
+        });
+};
+
+exports.delete=(id)=>{
+    return Product  
+        .findByIdAndRemove(id);
+};

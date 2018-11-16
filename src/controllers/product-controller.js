@@ -17,9 +17,7 @@ exports.post = (req, res, next) => {
         res.status(400).send(contract.errors()).end();
         return;
     }
-    var product = new Product(req.body);
-    product
-        .save()
+   repository.create(req.body)
         .then(x => {
             res.status(201).send({
                 message: 'produto cadastrado com sucesso'
@@ -55,11 +53,7 @@ exports.getBySlug = (req, res, next) => {
         });
 };
 exports.getByTag = (req, res, next) => {
-    Product
-        .find({
-            tags: req.params.tag,
-            active: true
-        }, 'title description price slug')
+    repository.getByTag(req.params.tag)
         .then(data => {
             res.status(200).send(data);
         }).catch(e => {
@@ -69,14 +63,8 @@ exports.getByTag = (req, res, next) => {
         });
 };
 exports.put = (req, res, next) => {
-    Product
-        .findByIdAndUpdate(req.params.id, {
-            $set: {
-                title: req.body.title,
-                description: req.body.description,
-                price: req.body.price
-            }
-        }).then(x => {
+    repository.update(req.params.id,req.body)
+    .then(x => {
             res.status(200).send({
                 message: 'produto a atualizado com sucesso!'
             });
@@ -88,8 +76,8 @@ exports.put = (req, res, next) => {
         });
 };
 exports.delete = (req, res, next) => {
-    Product
-        .findOneAndRemove(req.body.id)
+    repository
+        .delete
         .then(x => {
             res.status(200).send({
                 message: 'produto removido com sucesso'
