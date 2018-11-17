@@ -18,9 +18,9 @@ const schema = new  Schema({
         enum:['created','done'],
         default:'created'
     },
-
     customer:{
         type:mongoose.Schema.Types.ObjectId,
+        ref:'Customer',
         required:true
     },
     items:[{
@@ -30,15 +30,16 @@ const schema = new  Schema({
             default:1
         },
         price:{
-            type:number,
+            type:Number,
             require:true
         },
         product:{
             type:mongoose.Schema.Types.ObjectId,
+            ref:'Product',
             required:true
         }
 
     }]
     
 });
-module.exports = mongoose.model('Customer',schema);
+module.exports = mongoose.model('Order',schema);

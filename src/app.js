@@ -14,16 +14,19 @@ app.use(bodyparser.urlencoded({extended:false}));
 mongoose.connect('mongodb://almeida:a1b2c3@ds151383.mlab.com:51383/balta2');
 //carrega os models
 const Product = require('./models/product');
-const Customer = require(`./models/customer`);
+const Customer = require('./models/customer');
+const Order = require('./models/order');
 //carrega as rotas
 const indexRoute = require('./routes/index-route');
 const productsRoute = require('./routes/product-route');
 const customerRoute = require('./routes/customer-route');
+const orderRoute = require('./routes/order-route');
 
 
 app.use('/',indexRoute);
 app.use('/products',productsRoute);
 app.use('/customers',customerRoute);
+app.use('/orders',orderRoute);
 
 
 

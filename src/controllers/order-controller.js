@@ -1,16 +1,28 @@
 'use strict'
 
 const repository = require('../repository/order-repository');
+const guid = require('guid');
 
+exports.get = async (req, res, next) => {
+    try{
+         var data = await repository.get();
+         res.status(200).send(data);
+    }catch (e){
+         res.status(500).send({
+             message:'Falha ao executar requisição'
+         });
+    }
+ };
 
 exports.post = async(req, res, next) => {
-    //verifica se os dados passados pela requisição são validos
-    if (!contract.isValid()) {
-        res.status(400).send(contract.errors()).end();
-        return;
-    }
+
+   
     try{
-        await repository.create(req.body)
+        await repository.create({
+            customer: req.body.customer,
+            number:guid.raw().substring(0,6),
+            items:req.body.items 
+        });  
     res.status(201).send({
     message: 'Pedido cadastrado com sucesso'
     });
