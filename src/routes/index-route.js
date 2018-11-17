@@ -10,12 +10,4 @@ router.get('/',(req,res,next)=>{
     });
 });
 
-router.get('/index',(req,res,next)=>{
-    res.render("index.ejs");
-});
-
-
-router.get('/produtos',(req,res,next)=>{
-    res.render("form.ejs");
-});
 module.exports = router;

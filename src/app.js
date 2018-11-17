@@ -1,5 +1,5 @@
 'use strict'
-//parei na aula 27
+//parei na aula 29
 //mLab banco de dados mongoDB online 
 
 const express = require('express');
@@ -10,8 +10,6 @@ const router = express.Router();
 //não sei o que é mas sem ele da problema
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
-
-
 //carrega o banco
 mongoose.connect('mongodb://almeida:a1b2c3@ds151383.mlab.com:51383/balta2');
 //carrega os models
