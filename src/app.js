@@ -5,13 +5,14 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('./config')
 const app = express();
 const router = express.Router();
 //não sei o que é mas sem ele da problema
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
 //carrega o banco
-mongoose.connect('mongodb://almeida:a1b2c3@ds151383.mlab.com:51383/balta2');
+mongoose.connect(config.connectionString);
 //carrega os models
 const Product = require('./models/product');
 const Customer = require('./models/customer');
